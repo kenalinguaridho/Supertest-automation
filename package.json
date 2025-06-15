@@ -1,0 +1,23 @@
+{
+  "name": "automation-testing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "rm -rf reports",
+    "test": "jest user/register.test.js && jest user/activateAccount.test.js && jest user/login.test.js && jest user/getUser.test.js && jest user/updateUser.test.js && jest user/uploadAvatar.test.js && jest user/deleteUser.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-html-reporter": "^4.1.0",
+    "supertest": "^7.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "jsonwebtoken": "^9.0.2",
+    "passport": "^0.7.0"
+  }
+}

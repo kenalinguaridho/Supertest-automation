@@ -1,0 +1,277 @@
+<html><head><meta charset="utf-8"/><title>API Test Report</title><style type="text/css">:root {
+  --text-primary: #111;
+  --text-secondary: #4f4f4f;
+  --success: #006633;
+  --success-bright: #80ffbf;
+  --danger: #cc071e;
+  --danger-bright: #fbdfe0;
+  --warning: #995c00;
+  --warning-bright: #ffeea8;
+  --panel: #eee;
+  --border: #949494;
+  --disabled: #6b6b6b;
+}
+
+html,
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  color: var(--text-primary);
+}
+body {
+  padding: 2rem 1rem;
+}
+.jesthtml-content {
+  margin: 0 auto;
+  max-width: 70rem;
+}
+header {
+  display: flex;
+  align-items: center;
+}
+#title {
+  margin: 0;
+  flex-grow: 1;
+}
+#logo {
+  height: 4rem;
+}
+#timestamp {
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+#metadata-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.additional-information-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+}
+
+/** SUMMARY */
+#summary {
+  color: var(--text-primary);
+  display: flex;
+  font-family: monospace;
+  font-size: 1rem;
+}
+#summary > div {
+  margin-right: 0.5rem;
+  background: var(--panel);
+  padding: 1rem;
+  min-width: 15rem;
+}
+#summary > div:last-child {
+  margin-right: 0;
+}
+@media only screen and (max-width: 720px) {
+  #summary {
+    flex-direction: column;
+  }
+  #summary > div {
+    margin-right: 0;
+    margin-top: 1rem;
+  }
+  #summary > div:first-child {
+    margin-top: 0;
+  }
+}
+
+.summary-total {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.summary-passed {
+  color: var(--success);
+  border-left: 0.4rem solid var(--success);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-failed,
+.summary-obsolete-snapshots {
+  color: var(--danger);
+  border-left: 0.4rem solid var(--danger);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-pending {
+  color: var(--warning);
+  border-left: 0.4rem solid var(--warning);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-empty {
+  color: var(--disabled);
+  border-left: 0.4rem solid var(--disabled);
+  margin-bottom: 0.15rem;
+}
+
+.test-result {
+  padding: 1rem;
+  margin-bottom: 0.25rem;
+}
+.test-result:last-child {
+  border: 0;
+}
+.test-result.passed {
+  background-color: var(--success-bright);
+  color: var(--success);
+}
+.test-result.failed {
+  background-color: var(--danger-bright);
+  color: var(--danger);
+}
+.test-result.pending {
+  background-color: var(--warning-bright);
+  color: var(--warning);
+}
+
+.test-info {
+  display: flex;
+  justify-content: space-between;
+}
+.test-suitename {
+  width: 20%;
+  text-align: left;
+  font-weight: bold;
+  word-break: break-word;
+}
+.test-title {
+  width: 40%;
+  text-align: left;
+  font-style: italic;
+}
+.test-status {
+  width: 20%;
+  text-align: right;
+}
+.test-duration {
+  width: 10%;
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+.failureMessages {
+  padding: 0 1rem;
+  margin-top: 1rem;
+  border-top: 1px dashed var(--danger);
+}
+.failureMessages.suiteFailure {
+  border-top: none;
+}
+.failureMsg {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.suite-container {
+  margin-bottom: 1rem;
+}
+.suite-info {
+  padding: 1rem;
+  background-color: var(--panel);
+  color: var(--text-secondary);
+  border: 0.15rem solid;
+  border-color: var(--panel);
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+.suite-info:hover {
+  border-color: var(--border);
+  cursor: pointer;
+}
+.suite-info .suite-path {
+  word-break: break-all;
+  flex-grow: 1;
+  font-family: monospace;
+  font-size: 1rem;
+}
+.suite-info .suite-time {
+  margin-left: 1rem;
+  padding: 0.2rem 0.3rem;
+  font-size: 0.85rem;
+}
+.suite-info .suite-time.warn {
+  background-color: var(--danger);
+  color: #fff;
+}
+.suite-info:before {
+  content: "\2303";
+  display: inline-block;
+  margin-right: 1rem;
+  transform: rotate(180deg) translateY(0.15rem);
+}
+.suite-container[open] .suite-info:before {
+  transform: rotate(0deg) translateY(0.15rem);
+}
+
+/* CONSOLE LOGS */
+.suite-consolelog {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: var(--panel);
+}
+.suite-consolelog-header {
+  font-weight: bold;
+}
+.suite-consolelog-item {
+  padding: 0.5rem;
+}
+.suite-consolelog-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-consolelog-item-origin {
+  color: var(--text-secondary);
+  font-weight: bold;
+}
+.suite-consolelog-item-message {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+
+/* OBSOLETE SNAPSHOTS */
+.suite-obsolete-snapshots {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: var(--danger-bright);
+  color: var(--danger);
+}
+.suite-obsolete-snapshots-header {
+  font-weight: bold;
+}
+.suite-obsolete-snapshots-item {
+  padding: 0.5rem;
+}
+.suite-obsolete-snapshots-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-obsolete-snapshots-item-message {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+</style></head><body><main class="jesthtml-content"><header><h1 id="title">API Test Report</h1></header><section id="metadata-container"><div id="timestamp">Started: 2025-06-15 22:29:30</div><div id="summary"><div id="suite-summary"><div class="summary-total">Suites (1)</div><div class="summary-passed ">1 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div><div id="test-summary"><div class="summary-total">Tests (14)</div><div class="summary-passed ">14 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div></div></section><details id="suite-1" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">D:\BEJ9\automation-testing\__test__\user\register.test.js</div><div class="suite-time">1.828s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Reguster User Test</div><div class="test-title">Register user success</div><div class="test-status">passed</div><div class="test-duration">0.424s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Reguster User Test</div><div class="test-title">Register user failed unique constraint error</div><div class="test-status">passed</div><div class="test-duration">0.133s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Reguster User Test</div><div class="test-title">Register user failed field not contain space</div><div class="test-status">passed</div><div class="test-duration">0.01s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Reguster User Test</div><div class="test-title">Register user failed email not valid</div><div class="test-status">passed</div><div class="test-duration">0.009s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Reguster User Test</div><div class="test-title">Register user failed request body contain empty string</div><div class="test-status">passed</div><div class="test-duration">0.011s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Reguster User Test</div><div class="test-title">Register user failed request body not complete</div><div class="test-status">passed</div><div class="test-duration">0.012s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Reguster User Test</div><div class="test-title">Register user failed password and rePassword</div><div class="test-status">passed</div><div class="test-duration">0.008s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Register Admin Test</div><div class="test-title">Register admin success</div><div class="test-status">passed</div><div class="test-duration">0.131s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Register Admin Test</div><div class="test-title">Register admin failed constraint error</div><div class="test-status">passed</div><div class="test-duration">0.131s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Register Admin Test</div><div class="test-title">Register admin failed field not contain space</div><div class="test-status">passed</div><div class="test-duration">0.011s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Register Admin Test</div><div class="test-title">Register user failed email not valid</div><div class="test-status">passed</div><div class="test-duration">0.009s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Register Admin Test</div><div class="test-title">Register admin failed request body contain empty string</div><div class="test-status">passed</div><div class="test-duration">0.01s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Register Admin Test</div><div class="test-title">Register admin failed request body not complete</div><div class="test-status">passed</div><div class="test-duration">0.012s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Register Admin Test</div><div class="test-title">Register admin failed password and rePassword</div><div class="test-status">passed</div><div class="test-duration">0.014s</div></div></div></div></details></main><main class="jesthtml-content"><header><h1 id="title">API Test Report</h1></header><section id="metadata-container"><div id="timestamp">Started: 2025-06-15 22:29:33</div><div id="summary"><div id="suite-summary"><div class="summary-total">Suites (1)</div><div class="summary-passed ">1 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div><div id="test-summary"><div class="summary-total">Tests (3)</div><div class="summary-passed ">3 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div></div></section><details id="suite-1" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">D:\BEJ9\automation-testing\__test__\user\activateAccount.test.js</div><div class="suite-time">0.84s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Activate user account</div><div class="test-title">Activate user account success</div><div class="test-status">passed</div><div class="test-duration">0.067s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Activate user account</div><div class="test-title">Activate account failed id not found</div><div class="test-status">passed</div><div class="test-duration">0.011s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Activate user account</div><div class="test-title">Activate user account failed user is already activated</div><div class="test-status">passed</div><div class="test-duration">0.011s</div></div></div></div></details></main><main class="jesthtml-content"><header><h1 id="title">API Test Report</h1></header><section id="metadata-container"><div id="timestamp">Started: 2025-06-15 22:29:35</div><div id="summary"><div id="suite-summary"><div class="summary-total">Suites (1)</div><div class="summary-passed ">1 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div><div id="test-summary"><div class="summary-total">Tests (12)</div><div class="summary-passed ">12 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div></div></section><details id="suite-1" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">D:\BEJ9\automation-testing\__test__\user\login.test.js</div><div class="suite-time">1.974s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Login user test</div><div class="test-title">Login user by email success</div><div class="test-status">passed</div><div class="test-duration">0.194s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Login user test</div><div class="test-title">Login user by username success</div><div class="test-status">passed</div><div class="test-duration">0.133s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Login user test</div><div class="test-title">Login user by phone success</div><div class="test-status">passed</div><div class="test-duration">0.133s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Login user test</div><div class="test-title">Login failed user by email not exist</div><div class="test-status">passed</div><div class="test-duration">0.01s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Login user test</div><div class="test-title">Login failed user by phone not exist</div><div class="test-status">passed</div><div class="test-duration">0.01s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Login user test</div><div class="test-title">Login failed user by username not exist</div><div class="test-status">passed</div><div class="test-duration">0.009s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Login user test</div><div class="test-title">Login failed user account by email not active</div><div class="test-status">passed</div><div class="test-duration">0.12s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Login user test</div><div class="test-title">Login failed user account by phone not active</div><div class="test-status">passed</div><div class="test-duration">0.121s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Login user test</div><div class="test-title">Login failed user account by username not active</div><div class="test-status">passed</div><div class="test-duration">0.124s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Login user test</div><div class="test-title">Login failed user found by email and wrong password</div><div class="test-status">passed</div><div class="test-duration">0.121s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Login user test</div><div class="test-title">Login failed user found by username and wrong password</div><div class="test-status">passed</div><div class="test-duration">0.12s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Login user test</div><div class="test-title">Login failed user found by phone and wrong password</div><div class="test-status">passed</div><div class="test-duration">0.118s</div></div></div></div></details></main><main class="jesthtml-content"><header><h1 id="title">API Test Report</h1></header><section id="metadata-container"><div id="timestamp">Started: 2025-06-15 22:29:38</div><div id="summary"><div id="suite-summary"><div class="summary-total">Suites (1)</div><div class="summary-passed ">1 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div><div id="test-summary"><div class="summary-total">Tests (3)</div><div class="summary-passed ">3 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div></div></section><details id="suite-1" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">D:\BEJ9\automation-testing\__test__\user\getUser.test.js</div><div class="suite-time">1.055s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Get user profile</div><div class="test-title">Get user with valid token success</div><div class="test-status">passed</div><div class="test-duration">0.074s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Get user profile</div><div class="test-title">Get user failed with invalid token</div><div class="test-status">passed</div><div class="test-duration">0.009s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Get user profile</div><div class="test-title">Get user failed without valid token</div><div class="test-status">passed</div><div class="test-duration">0.006s</div></div></div></div></details></main><main class="jesthtml-content"><header><h1 id="title">API Test Report</h1></header><section id="metadata-container"><div id="timestamp">Started: 2025-06-15 22:29:41</div><div id="summary"><div id="suite-summary"><div class="summary-total">Suites (1)</div><div class="summary-passed ">1 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div><div id="test-summary"><div class="summary-total">Tests (8)</div><div class="summary-passed ">8 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div></div></section><details id="suite-1" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">D:\BEJ9\automation-testing\__test__\user\updateUser.test.js</div><div class="suite-time">1.464s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Update user test</div><div class="test-title">Update user data success</div><div class="test-status">passed</div><div class="test-duration">0.058s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Update user test</div><div class="test-title">Update user data failed no token</div><div class="test-status">passed</div><div class="test-duration">0.008s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Update user test</div><div class="test-title">Update user data failed password or rePassword not provided</div><div class="test-status">passed</div><div class="test-duration">0.013s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Update user test</div><div class="test-title">Update user data failed password and rePassword not match</div><div class="test-status">passed</div><div class="test-duration">0.014s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Update user test</div><div class="test-title">Update user failed request body contain empty string</div><div class="test-status">passed</div><div class="test-duration">0.017s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Update user test</div><div class="test-title">Update user failed unique constraint error</div><div class="test-status">passed</div><div class="test-duration">0.021s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Update user test</div><div class="test-title">Update user failed field contain space</div><div class="test-status">passed</div><div class="test-duration">0.016s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Update user test</div><div class="test-title">Update user failed email not valid</div><div class="test-status">passed</div><div class="test-duration">0.015s</div></div></div></div></details></main><main class="jesthtml-content"><header><h1 id="title">API Test Report</h1></header><section id="metadata-container"><div id="timestamp">Started: 2025-06-15 22:29:44</div><div id="summary"><div id="suite-summary"><div class="summary-total">Suites (1)</div><div class="summary-passed ">1 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div><div id="test-summary"><div class="summary-total">Tests (3)</div><div class="summary-passed ">3 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div></div></section><details id="suite-1" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">D:\BEJ9\automation-testing\__test__\user\uploadAvatar.test.js</div><div class="suite-time warn">13.765s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Uplaod user avatar</div><div class="test-title">User success upload avatar should return 200</div><div class="test-status">passed</div><div class="test-duration">12.449s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Uplaod user avatar</div><div class="test-title">User upload multiple image should return 400</div><div class="test-status">passed</div><div class="test-duration">0.029s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Uplaod user avatar</div><div class="test-title">User non image file return 400</div><div class="test-status">passed</div><div class="test-duration">0.016s</div></div></div></div></details></main><main class="jesthtml-content"><header><h1 id="title">API Test Report</h1></header><section id="metadata-container"><div id="timestamp">Started: 2025-06-15 22:29:59</div><div id="summary"><div id="suite-summary"><div class="summary-total">Suites (1)</div><div class="summary-passed ">1 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div><div id="test-summary"><div class="summary-total">Tests (4)</div><div class="summary-passed ">4 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div></div></section><details id="suite-1" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">D:\BEJ9\automation-testing\__test__\user\deleteUser.test.js</div><div class="suite-time">1.089s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Delete user test</div><div class="test-title">Delete user account with valid token success</div><div class="test-status">passed</div><div class="test-duration">0.062s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Delete user test</div><div class="test-title">Delete user account failed user is deleted</div><div class="test-status">passed</div><div class="test-duration">0.012s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Delete user test</div><div class="test-title">Delete user account failed without valid token</div><div class="test-status">passed</div><div class="test-duration">0.006s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Delete user test</div><div class="test-title">Delete user account failed with no token</div><div class="test-status">passed</div><div class="test-duration">0.006s</div></div></div></div></details></main></body></html>
